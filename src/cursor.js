@@ -48,10 +48,10 @@ class Cursor {
     if (this.cursorOnPieceCheck()) {
       this.hasPiece = true;
       this.selectedPiece = this.cursorOnPieceCheck();
-      console.log(`An ${this.selectedPiece.color} piece was selected.`);
+      //console.log(`An ${this.selectedPiece.color} piece was selected.`);
       return;
     }
-    console.log("No piece was selected by Cursor.selectPiece()");
+    //console.log("No piece was selected by Cursor.selectPiece()");
     return;
   }
 
