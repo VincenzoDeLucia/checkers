@@ -36,22 +36,27 @@ class Cursor {
   }
 
   cursorOnPieceCheck() {
-    return game.pieces.find(
-      (piece) =>
-        piece.color === this.color &&
-        piece.row === this.row &&
-        piece.col === this.col
-    );
+    return game.activeOrangePieces
+      .concat(game.activeCyanPieces)
+      .find(
+        (piece) =>
+          piece.color === this.color &&
+          piece.row === this.row &&
+          piece.col === this.col
+      );
   }
 
   selectPiece() {
     if (this.cursorOnPieceCheck()) {
       this.hasPiece = true;
       this.selectedPiece = this.cursorOnPieceCheck();
+      this.selectedPiece.vicinityCheck();
+      console.log(this.selectedPiece.neighbours);
       //console.log(`An ${this.selectedPiece.color} piece was selected.`);
       return;
     }
     //console.log("No piece was selected by Cursor.selectPiece()");
+    this.showSurroundings();
     return;
   }
 

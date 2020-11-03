@@ -38,6 +38,8 @@ class Game {
       this.cyan7,
       this.cyan8,
     ];
+    this.inactiveOrangePieces = [];
+    this.inactiveCyanPieces = [];
     this.board = [];
     this.numOfPieces = 8;
     this.activeCursor = this.orangeCursor;
@@ -51,8 +53,7 @@ class Game {
           col: i,
           row: l,
           occupied: false,
-          enhanced: false,
-          isTheCursorHere: false,
+          occupiedBy: undefined,
         });
       }
       this.board.push(newRow);
@@ -121,6 +122,7 @@ function keyPressed() {
       !game.activeCursor.cursorOnPieceCheck()
     ) {
       game.activeCursor.moveSelectedPiece();
+      //game.activeCursor.selectedPiece.vicinityCheck();
       game.activeCursor.selectedPiece = undefined;
       game.activeCursor.hasPiece = false;
       game.toggleCursor();

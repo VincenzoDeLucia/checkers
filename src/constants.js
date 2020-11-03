@@ -1,3 +1,3 @@
-let WIDTH = 1200;
+let WIDTH = 500;
 let HEIGHT = WIDTH;
 let SQUARE = WIDTH / 8;
