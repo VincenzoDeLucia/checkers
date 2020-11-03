@@ -119,14 +119,20 @@ class Piece {
           });
       }
     });
-    this.possibleMoves = this.possibleMoves.filter((possibleMove) => {
-      return (
-        0 <= possibleMove.destination[0] &&
-        possibleMove.destination[0] <= 7 &&
-        0 <= possibleMove.destination[1] &&
-        possibleMove.destination[1] <= 7
-      );
-    });
+    this.possibleMoves = this.possibleMoves
+      .filter((possibleMove) => {
+        return (
+          0 <= possibleMove.destination[0] &&
+          possibleMove.destination[0] <= 7 &&
+          0 <= possibleMove.destination[1] &&
+          possibleMove.destination[1] <= 7
+        );
+      })
+      .filter((possibleMove) => {
+        return !game.board[possibleMove.destination[0]][
+          possibleMove.destination[1]
+        ].occupied;
+      });
     console.log(this.possibleMoves);
   }
 
