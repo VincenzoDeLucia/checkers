@@ -62,6 +62,7 @@ class Cursor {
     if (this.cursorOnPieceCheck()) {
       this.hasPiece = true;
       this.selectedPiece = this.cursorOnPieceCheck();
+      this.selectedPiece.selected = true;
       this.selectedPiece.surroundings = this.selectedPiece.getSurroundings();
       this.selectedPiece.vicinityCheck();
       //console.log(this.selectedPiece.neighbours);
@@ -77,6 +78,7 @@ class Cursor {
     game.board[this.selectedPiece.col][this.selectedPiece.row].occupied = false;
     this.selectedPiece.col = this.col;
     this.selectedPiece.row = this.row;
+    this.selectedPiece.selected = false;
     this.selectedPiece = null;
   }
 
