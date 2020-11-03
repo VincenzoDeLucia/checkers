@@ -5,9 +5,9 @@ class Piece {
     this.color = color;
     this.allyNeighbours = [];
     this.enemyNeighbours = [];
+    this.possibleMoves = [];
     //this.selected = false;
     this.surroundings = this.getSurroundings();
-    this.possibleMoves = this.getPossibleMoves();
   }
 
   getSurroundings() {
@@ -58,49 +58,6 @@ class Piece {
   vicinityCheck() {
     this.allyNeighbours = [];
     this.enemyNeighbours = [];
-    // // for (let i = 0; i < this.surroundings.length; i++) {
-    //   const isInBoard =
-    // game &&
-    // game.board &&
-    // // game.board[this.surroundings[i].coordinates[0]] &&
-    // // game.board[this.surroundings[i].coordinates[0]][
-    //   this.surroundings[i].coordinates[1]
-    // ] &&
-    // // game.board[this.surroundings[i].coordinates[0]][
-    //   this.surroundings[i].coordinates[1]
-    // ].occupied;
-    //   if (isInBoard) {
-    // if (
-    // //   game.board[this.surroundings[i].coordinates[0]][
-    // this.surroundings[i].coordinates[1]
-    //   ].occupiedBy.color === this.color
-    // ) {
-    // //   this.allyNeighbours.push(this.surroundings[i]);
-    //   this.possibleMoves.push([
-    // this.surroundings[i].eatingPosition[0],
-    // this.surroundings[i].eatingPosition[1],
-    //   ]);
-    // }
-    // if (
-    // //   game.board[this.surroundings[i].coordinates[0]][
-    // this.surroundings[i].coordinates[1]
-    //   ].occupied &&
-    // //   game.board[this.surroundings[i].coordinates[0]][
-    // this.surroundings[i].coordinates[1]
-    //   ].occupiedBy.color !== this.color
-    // ) {
-    // //   this.enemyNeighbours.push(this.surroundings[i]);
-    //   this.possibleMoves.push([
-    // this.surroundings[i].eatingPosition[0],
-    // this.surroundings[i].eatingPosition[1],
-    //   ]);
-    // }
-    // this.possibleMoves.push([
-    //   this.surroundings[i].coordinates[0],
-    //   this.surroundings[i].coordinates[1],
-    // ]);
-    //   }
-    // }
     this.surroundings.forEach((adjacentSquare) => {
       const isInBoard =
         game &&
@@ -119,19 +76,23 @@ class Piece {
         ) {
           this.allyNeighbours.push(adjacentSquare);
           console.log("friend detected");
+          this.possibleMoves.push([
+            adjacentSquare.eatingPosition[0],
+            adjacentSquare.eatingPosition[1],
+          ]);
           return;
         }
         this.enemyNeighbours.push(adjacentSquare);
         console.log("enemy detected");
+        this.possibleMoves.push([
+          adjacentSquare.eatingPosition[0],
+          adjacentSquare.eatingPosition[1],
+        ]);
       }
     });
     console.log(this.allyNeighbours);
     console.log(this.enemyNeighbours);
     console.log(this.possibleMoves);
-  }
-  getPossibleMoves() {
-    let moves = [];
-    return moves;
   }
 
   drawPiece() {

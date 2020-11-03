@@ -64,8 +64,6 @@ class Cursor {
       this.selectedPiece = this.cursorOnPieceCheck();
       this.selectedPiece.surroundings = this.selectedPiece.getSurroundings();
       this.selectedPiece.vicinityCheck();
-      this.selectedPiece.getPossibleMoves();
-      console.log(this.selectedPiece.possibleMoves);
       //console.log(this.selectedPiece.neighbours);
       //console.log(`An ${this.selectedPiece.color} piece was selected.`);
       return;
