@@ -4,7 +4,7 @@ class Cursor {
     this.row = row;
     this.color = color;
     this.hasPiece = false;
-    this.selectedPiece = undefined;
+    this.selectedPiece = null;
   }
 
   moveLeft() {
@@ -50,20 +50,21 @@ class Cursor {
     if (this.cursorOnPieceCheck()) {
       this.hasPiece = true;
       this.selectedPiece = this.cursorOnPieceCheck();
+      this.selectedPiece.surroundings = this.selectedPiece.getSurroundings();
       this.selectedPiece.vicinityCheck();
       console.log(this.selectedPiece.neighbours);
       //console.log(`An ${this.selectedPiece.color} piece was selected.`);
       return;
     }
     //console.log("No piece was selected by Cursor.selectPiece()");
-    this.showSurroundings();
+    //this.showSurroundings();
     return;
   }
 
   moveSelectedPiece() {
     this.selectedPiece.col = this.col;
     this.selectedPiece.row = this.row;
-    this.selectedPiece = undefined;
+    this.selectedPiece = null;
   }
 
   drawCursor() {

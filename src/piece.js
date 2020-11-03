@@ -3,9 +3,14 @@ class Piece {
     this.col = col;
     this.row = row;
     this.color = color;
-    this.neighbours = [];
+    this.allyNeighbours = [];
+    this.enemyNeighbours = [];
     //this.selected = false;
-    this.surroundings = [
+    this.surroundings = this.getSurroundings();
+  }
+
+  getSurroundings() {
+    return [
       {
         relativePosition: 1,
         coordinates: [this.col - 1, this.row - 1],
@@ -50,14 +55,30 @@ class Piece {
   }
 
   vicinityCheck() {
+    this.allyNeighbours = [];
+    this.enemyNeighbours = [];
     this.surroundings.forEach((adjacentSquare) => {
       if (
         game.board[adjacentSquare.coordinates[0]][adjacentSquare.coordinates[1]]
           .occupied
       ) {
-        this.neighbours.push(adjacentSquare);
+        // console.log("friend detected");
+        // this.allyNeighbours.push(adjacentSquare);
+        if (
+          game.board[adjacentSquare.coordinates[0]][
+            adjacentSquare.coordinates[1]
+          ].occupiedBy.color === this.color
+        ) {
+          this.allyNeighbours.push(adjacentSquare);
+          console.log("friend detected");
+          return;
+        }
+        this.enemyNeighbours.push(adjacentSquare);
+        console.log("enemy detected");
       }
     });
+    console.log(this.allyNeighbours);
+    console.log(this.enemyNeighbours);
   }
 
   drawPiece() {

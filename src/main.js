@@ -5,7 +5,7 @@ function preload() {
 }
 
 function setup() {
-  let canvas = createCanvas(1200, 1200);
+  let canvas = createCanvas(WIDTH, HEIGHT);
   game.setUp();
   console.log(game.board);
 }

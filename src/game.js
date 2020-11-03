@@ -53,7 +53,7 @@ class Game {
           col: i,
           row: l,
           occupied: false,
-          occupiedBy: undefined,
+          occupiedBy: null,
         });
       }
       this.board.push(newRow);
