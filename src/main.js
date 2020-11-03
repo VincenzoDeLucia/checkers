@@ -2,6 +2,11 @@ const game = new Game();
 
 function preload() {
   console.log("PRELOAD");
+  terrain = loadImage("assets/terrain.jpg");
+  cursor = loadImage("assets/cursor.png");
+  dev = loadImage("assets/dev.svg");
+  tom = loadImage("assets/tom.svg");
+  target = loadImage("assets/target.svg");
 }
 
 function setup() {
@@ -12,5 +17,6 @@ function setup() {
 
 function draw() {
   clear();
+  background(terrain);
   game.drawGame();
 }

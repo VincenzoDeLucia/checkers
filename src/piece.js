@@ -136,11 +136,33 @@ class Piece {
     console.log(this.possibleMoves);
   }
 
+  // drawPiece() {
+  // if (this.selected) {
+  // this.possibleMoves.forEach((possibleMove) => {
+  // fill(255, 255, 255);
+  // rect(
+  // possibleMove.destination[0] * SQUARE,
+  // possibleMove.destination[1] * SQUARE,
+  // SQUARE,
+  // SQUARE
+  // );
+  // });
+  // }
+  // game.board[this.col][this.row].occupied = true;
+  // game.board[this.col][this.row].occupiedBy = this;
+  // fill(this.color);
+  // circle(
+  // this.col * SQUARE + SQUARE / 2,
+  // this.row * SQUARE + SQUARE / 2,
+  // SQUARE
+  // );
+  // }
+
   drawPiece() {
     if (this.selected) {
       this.possibleMoves.forEach((possibleMove) => {
-        fill(255, 255, 255);
-        rect(
+        image(
+          target,
           possibleMove.destination[0] * SQUARE,
           possibleMove.destination[1] * SQUARE,
           SQUARE,
@@ -148,13 +170,14 @@ class Piece {
         );
       });
     }
+    if (this.color === "orange") {
+      game.board[this.col][this.row].occupied = true;
+      game.board[this.col][this.row].occupiedBy = this;
+      image(dev, this.col * SQUARE, this.row * SQUARE, SQUARE, SQUARE);
+      return;
+    }
     game.board[this.col][this.row].occupied = true;
     game.board[this.col][this.row].occupiedBy = this;
-    fill(this.color);
-    circle(
-      this.col * SQUARE + SQUARE / 2,
-      this.row * SQUARE + SQUARE / 2,
-      SQUARE
-    );
+    image(tom, this.col * SQUARE, this.row * SQUARE, SQUARE, SQUARE);
   }
 }

@@ -82,6 +82,6 @@ class Cursor {
 
   drawCursor() {
     fill(this.color);
-    rect(this.col * SQUARE, this.row * SQUARE, SQUARE, SQUARE);
+    image(cursor, this.col * SQUARE, this.row * SQUARE, SQUARE, SQUARE);
   }
 }

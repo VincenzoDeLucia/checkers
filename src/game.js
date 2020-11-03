@@ -87,8 +87,8 @@ class Game {
 
   drawGame() {
     this.drawBoard();
-    this.drawCursors();
     this.drawPieces();
+    this.drawCursors();
   }
 }
 
