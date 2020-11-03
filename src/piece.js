@@ -58,8 +58,16 @@ class Piece {
   vicinityCheck() {
     this.allyNeighbours = [];
     this.enemyNeighbours = [];
+    this.possibleMoves = [];
     this.surroundings.forEach((adjacentSquare) => {
       const isInBoard =
+        game &&
+        game.board &&
+        game.board[adjacentSquare.coordinates[0]] &&
+        game.board[adjacentSquare.coordinates[0]][
+          adjacentSquare.coordinates[1]
+        ];
+      const isOccupiedInBoard =
         game &&
         game.board &&
         game.board[adjacentSquare.coordinates[0]] &&
@@ -69,30 +77,71 @@ class Piece {
         game.board[adjacentSquare.coordinates[0]][adjacentSquare.coordinates[1]]
           .occupied;
       if (isInBoard) {
-        if (
-          game.board[adjacentSquare.coordinates[0]][
-            adjacentSquare.coordinates[1]
-          ].occupiedBy.color === this.color
-        ) {
-          this.allyNeighbours.push(adjacentSquare);
-          console.log("friend detected");
+        if (isOccupiedInBoard) {
+          if (
+            game.board[adjacentSquare.coordinates[0]][
+              adjacentSquare.coordinates[1]
+            ].occupiedBy.color === this.color
+          ) {
+            this.allyNeighbours.push(adjacentSquare);
+            console.log("friend detected");
+            this.possibleMoves.push([
+              adjacentSquare.eatingPosition[0],
+              adjacentSquare.eatingPosition[1],
+            ]);
+            return;
+          }
+          this.enemyNeighbours.push(adjacentSquare);
+          console.log("enemy detected");
           this.possibleMoves.push([
             adjacentSquare.eatingPosition[0],
             adjacentSquare.eatingPosition[1],
           ]);
-          return;
         }
-        this.enemyNeighbours.push(adjacentSquare);
-        console.log("enemy detected");
-        this.possibleMoves.push([
-          adjacentSquare.eatingPosition[0],
-          adjacentSquare.eatingPosition[1],
-        ]);
+        if (
+          isInBoard &&
+          !game.board[adjacentSquare.coordinates[0]][
+            adjacentSquare.coordinates[1]
+          ].occupied
+        )
+          this.possibleMoves.push([
+            adjacentSquare.coordinates[0],
+            adjacentSquare.coordinates[1],
+          ]);
       }
+      //   if (isOccupiedInBoard) {
+      //     if (
+      //       game.board[adjacentSquare.coordinates[0]][
+      //         adjacentSquare.coordinates[1]
+      //       ].occupiedBy.color === this.color
+      //     ) {
+      //       this.allyNeighbours.push(adjacentSquare);
+      //       console.log("friend detected");
+      //       //   this.possibleMoves.push([
+      //       // adjacentSquare.eatingPosition[0],
+      //       // adjacentSquare.eatingPosition[1],
+      //       //   ]);
+      //       return;
+      //     }
+      //     this.enemyNeighbours.push(adjacentSquare);
+      //     console.log("enemy detected");
+      //     //   this.possibleMoves.push([
+      //     // adjacentSquare.eatingPosition[0],
+      //     // adjacentSquare.eatingPosition[1],
+      //     //   ]);
+      //   }
     });
     console.log(this.allyNeighbours);
     console.log(this.enemyNeighbours);
     console.log(this.possibleMoves);
+  }
+
+  getPossibleMoves() {
+    const isInBoard =
+      game &&
+      game.board &&
+      game.board[adjacentSquare.coordinates[0]] &&
+      game.board[adjacentSquare.coordinates[0]][adjacentSquare.coordinates[1]];
   }
 
   drawPiece() {
