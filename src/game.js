@@ -113,6 +113,7 @@ function keyPressed() {
       game.activeCursor.cursorOnPieceCheck() &&
       game.activeCursor.hasPiece
     ) {
+      game.activeCursor.selectedPiece.selected = false;
       game.activeCursor.selectedPiece = undefined;
       game.activeCursor.hasPiece = false;
       //console.log("the cursor has detached from the piece");
