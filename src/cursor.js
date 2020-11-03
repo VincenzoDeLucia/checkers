@@ -8,7 +8,7 @@ class Cursor {
   }
 
   moveRight() {
-    if (this.hasPiece && this.col > this.selectedPiece.col) {
+    if (this.hasPiece) {
       //return;
     }
     if (this.col < 7) {
@@ -65,12 +65,10 @@ class Cursor {
       this.selectedPiece.selected = true;
       this.selectedPiece.surroundings = this.selectedPiece.getSurroundings();
       this.selectedPiece.vicinityCheck();
-      //console.log(this.selectedPiece.neighbours);
       //console.log(`An ${this.selectedPiece.color} piece was selected.`);
       return;
     }
     //console.log("No piece was selected by Cursor.selectPiece()");
-    //this.showSurroundings();
     return;
   }
 

@@ -84,19 +84,25 @@ class Piece {
             ].occupiedBy.color === this.color
           ) {
             this.allyNeighbours.push(adjacentSquare);
-            console.log("friend detected");
-            this.possibleMoves.push([
-              adjacentSquare.eatingPosition[0],
-              adjacentSquare.eatingPosition[1],
-            ]);
+            //console.log("friend detected");
+            this.possibleMoves.push({
+              actionType: "jump",
+              destination: [
+                adjacentSquare.eatingPosition[0],
+                adjacentSquare.eatingPosition[1],
+              ],
+            });
             return;
           }
           this.enemyNeighbours.push(adjacentSquare);
-          console.log("enemy detected");
-          this.possibleMoves.push([
-            adjacentSquare.eatingPosition[0],
-            adjacentSquare.eatingPosition[1],
-          ]);
+          //console.log("enemy detected");
+          this.possibleMoves.push({
+            actionType: "eat",
+            destination: [
+              adjacentSquare.eatingPosition[0],
+              adjacentSquare.eatingPosition[1],
+            ],
+          });
         }
         if (
           isInBoard &&
@@ -104,18 +110,38 @@ class Piece {
             adjacentSquare.coordinates[1]
           ].occupied
         )
-          this.possibleMoves.push([
-            adjacentSquare.coordinates[0],
-            adjacentSquare.coordinates[1],
-          ]);
+          this.possibleMoves.push({
+            actionType: "move",
+            destination: [
+              adjacentSquare.coordinates[0],
+              adjacentSquare.coordinates[1],
+            ],
+          });
       }
     });
-    console.log(this.allyNeighbours);
-    console.log(this.enemyNeighbours);
+    this.possibleMoves = this.possibleMoves.filter((possibleMove) => {
+      return (
+        0 <= possibleMove.destination[0] &&
+        possibleMove.destination[0] <= 7 &&
+        0 <= possibleMove.destination[1] &&
+        possibleMove.destination[1] <= 7
+      );
+    });
     console.log(this.possibleMoves);
   }
 
   drawPiece() {
+    if (this.selected) {
+      this.possibleMoves.forEach((possibleMove) => {
+        fill(255, 255, 255);
+        rect(
+          possibleMove.destination[0] * SQUARE,
+          possibleMove.destination[1] * SQUARE,
+          SQUARE,
+          SQUARE
+        );
+      });
+    }
     game.board[this.col][this.row].occupied = true;
     game.board[this.col][this.row].occupiedBy = this;
     fill(this.color);
@@ -124,16 +150,5 @@ class Piece {
       this.row * SQUARE + SQUARE / 2,
       SQUARE
     );
-    if (this.selected) {
-      this.possibleMoves.forEach((possibleMove) => {
-        fill(255, 255, 255);
-        rect(
-          possibleMove[0] * SQUARE,
-          possibleMove[1] * SQUARE,
-          SQUARE,
-          SQUARE
-        );
-      });
-    }
   }
 }
