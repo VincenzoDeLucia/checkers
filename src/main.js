@@ -7,7 +7,7 @@ function preload() {
 function setup() {
   let canvas = createCanvas(WIDTH, HEIGHT);
   game.setUp();
-  console.log(game.board);
+  //console.log(game.board);
 }
 
 function draw() {
