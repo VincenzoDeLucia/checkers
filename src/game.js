@@ -1,7 +1,7 @@
 class Game {
   constructor() {
     this.orange1 = new Piece("orange", 0, 0);
-    this.orange2 = new Piece("orange", 2, 0);
+    this.orange2 = new Piece("orange", 1, 0);
     this.orange3 = new Piece("orange", 4, 0);
     this.orange4 = new Piece("orange", 6, 0);
     this.orange5 = new Piece("orange", 1, 1);
@@ -81,12 +81,24 @@ class Game {
       .forEach((piece) => piece.drawPiece());
   }
 
+  drawGrid() {
+    for (var x = 0; x <= WIDTH; x += WIDTH / 8) {
+      for (var y = 0; y <= HEIGHT; y += HEIGHT / 8) {
+        stroke(0);
+        strokeWeight(1);
+        line(x, 0, x, HEIGHT);
+        line(0, y, HEIGHT, y);
+      }
+    }
+  }
+
   drawCursors() {
     this.activeCursor.drawCursor();
   }
 
   drawGame() {
     this.drawBoard();
+    this.drawGrid();
     this.drawPieces();
     this.drawCursors();
   }
@@ -122,11 +134,14 @@ function keyPressed() {
       game.activeCursor.hasPiece &&
       !game.activeCursor.cursorOnPieceCheck()
     ) {
-      game.activeCursor.moveSelectedPiece();
-      //game.activeCursor.selectedPiece.vicinityCheck();
-      game.activeCursor.selectedPiece = undefined;
-      game.activeCursor.hasPiece = false;
-      game.toggleCursor();
+      if (game.activeCursor.moveIsLegal()) {
+        game.activeCursor.moveSelectedPiece();
+        game.activeCursor.selectedPiece = undefined;
+        game.activeCursor.hasPiece = false;
+        game.toggleCursor();
+        return;
+      }
+      return;
     }
   }
 }

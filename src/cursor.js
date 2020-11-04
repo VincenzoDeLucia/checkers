@@ -8,8 +8,8 @@ class Cursor {
   }
 
   moveRight() {
-    if (this.hasPiece) {
-      //return;
+    if (this.hasPiece && this.col > this.selectedPiece.col) {
+      //return
     }
     if (this.col < 7) {
       this.col += 1;
@@ -83,5 +83,15 @@ class Cursor {
   drawCursor() {
     fill(this.color);
     image(cursor, this.col * SQUARE, this.row * SQUARE, SQUARE, SQUARE);
+  }
+
+  moveIsLegal() {
+    let legalMove = this.selectedPiece.possibleMoves.filter((possibleMove) => {
+      return (
+        possibleMove.destination[0] === this.col &&
+        possibleMove.destination[1] === this.row
+      );
+    });
+    return legalMove.length === 1;
   }
 }
