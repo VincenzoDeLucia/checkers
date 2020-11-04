@@ -75,6 +75,7 @@ class Cursor {
         );
       });
       //console.log(game.activePieces.indexOf(target));
+      console.log(game.activePieces.indexOf(target));
       game.inactivePieces.push(target);
       console.log(game.inactivePieces);
       game.board[target.col][target.row].occupied = false;
@@ -89,6 +90,7 @@ class Cursor {
     game.board[this.selectedPiece.col][this.selectedPiece.row].occupied = false;
     this.selectedPiece.col = this.col;
     this.selectedPiece.row = this.row;
+    this.winCheck();
     this.selectedPiece.selected = false;
     this.selectedPiece = null;
     //console.log(game.board);
@@ -102,6 +104,17 @@ class Cursor {
       );
     });
     return legalMove.length === 1;
+  }
+
+  winCheck() {
+    // let piecesLeft = game.activePieces.find(piece => {
+    // // return piece.color === this.selectedPiece.getOpponent();
+    // });
+    // // if (piecesLeft.length === 0 && this.selectedPiece === "orange") {
+    // console.log("The developers saved the day!");
+    // } else {
+    // // console.log("The nefarious tomatoes have prevailed!");
+    // }
   }
 
   drawCursor() {
