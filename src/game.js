@@ -1,7 +1,7 @@
 class Game {
   constructor() {
     this.orange1 = new Piece("orange", 0, 0);
-    this.orange2 = new Piece("orange", 1, 0);
+    this.orange2 = new Piece("orange", 6, 6);
     this.orange3 = new Piece("orange", 4, 0);
     this.orange4 = new Piece("orange", 6, 0);
     this.orange5 = new Piece("orange", 1, 1);
@@ -11,7 +11,7 @@ class Game {
     this.cyan1 = new Piece("cyan", 0, 6);
     this.cyan2 = new Piece("cyan", 2, 6);
     this.cyan3 = new Piece("cyan", 4, 6);
-    this.cyan4 = new Piece("cyan", 6, 6);
+    this.cyan4 = new Piece("cyan", 1, 0);
     this.cyan5 = new Piece("cyan", 1, 7);
     this.cyan6 = new Piece("cyan", 3, 7);
     this.cyan7 = new Piece("cyan", 5, 7);
@@ -123,7 +123,9 @@ function keyPressed() {
       //console.log(game.activeCursor.selectedPiece);
     } else if (
       game.activeCursor.cursorOnPieceCheck() &&
-      game.activeCursor.hasPiece
+      game.activeCursor.hasPiece &&
+      game.activeCursor.col === game.activeCursor.selectedPiece.col &&
+      game.activeCursor.row === game.activeCursor.selectedPiece.row
     ) {
       game.activeCursor.selectedPiece.selected = false;
       game.activeCursor.selectedPiece = undefined;

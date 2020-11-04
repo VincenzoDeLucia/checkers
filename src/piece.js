@@ -87,23 +87,27 @@ class Piece {
             //console.log("friend detected");
             this.possibleMoves.push({
               actionType: "jump",
+              relativePosition: adjacentSquare.relativePosition,
               destination: [
                 adjacentSquare.eatingPosition[0],
                 adjacentSquare.eatingPosition[1],
               ],
-              relativePosition: adjacentSquare.relativePosition,
             });
             return;
           }
           this.enemyNeighbours.push(adjacentSquare);
-          //console.log("enemy detected");
+          console.log("enemy detected");
           this.possibleMoves.push({
             actionType: "eat",
+            relativePosition: adjacentSquare.relativePosition,
             destination: [
               adjacentSquare.eatingPosition[0],
               adjacentSquare.eatingPosition[1],
             ],
-            relativePosition: adjacentSquare.relativePosition,
+            enemyCoordinates: [
+              adjacentSquare.coordinates[0],
+              adjacentSquare.coordinates[1],
+            ],
           });
         }
         if (
@@ -114,11 +118,11 @@ class Piece {
         )
           this.possibleMoves.push({
             actionType: "move",
+            relativePosition: adjacentSquare.relativePosition,
             destination: [
               adjacentSquare.coordinates[0],
               adjacentSquare.coordinates[1],
             ],
-            relativePosition: adjacentSquare.relativePosition,
           });
       }
     });
@@ -136,6 +140,7 @@ class Piece {
           possibleMove.destination[1]
         ].occupied;
       });
+    console.log(this.enemyNeighbours);
     console.log(this.possibleMoves);
   }
 

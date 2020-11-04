@@ -78,11 +78,7 @@ class Cursor {
     this.selectedPiece.row = this.row;
     this.selectedPiece.selected = false;
     this.selectedPiece = null;
-  }
-
-  drawCursor() {
-    fill(this.color);
-    image(cursor, this.col * SQUARE, this.row * SQUARE, SQUARE, SQUARE);
+    console.log(game.board);
   }
 
   moveIsLegal() {
@@ -93,5 +89,10 @@ class Cursor {
       );
     });
     return legalMove.length === 1;
+  }
+
+  drawCursor() {
+    fill(this.color);
+    image(cursor, this.col * SQUARE, this.row * SQUARE, SQUARE, SQUARE);
   }
 }
