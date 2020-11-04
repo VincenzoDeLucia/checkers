@@ -1,7 +1,7 @@
 class Game {
   constructor() {
     this.orange1 = new Piece("orange", 0, 0);
-    this.orange2 = new Piece("orange", 6, 6);
+    this.orange2 = new Piece("orange", 2, 0);
     this.orange3 = new Piece("orange", 4, 0);
     this.orange4 = new Piece("orange", 6, 0);
     this.orange5 = new Piece("orange", 1, 1);
@@ -11,14 +11,14 @@ class Game {
     this.cyan1 = new Piece("cyan", 0, 6);
     this.cyan2 = new Piece("cyan", 2, 6);
     this.cyan3 = new Piece("cyan", 4, 6);
-    this.cyan4 = new Piece("cyan", 1, 0);
+    this.cyan4 = new Piece("cyan", 6, 6);
     this.cyan5 = new Piece("cyan", 1, 7);
     this.cyan6 = new Piece("cyan", 3, 7);
     this.cyan7 = new Piece("cyan", 5, 7);
     this.cyan8 = new Piece("cyan", 7, 7);
     this.orangeCursor = new Cursor("orange", 0, 0);
     this.cyanCursor = new Cursor("cyan", 7, 7);
-    this.activeOrangePieces = [
+    this.activePieces = [
       this.orange1,
       this.orange2,
       this.orange3,
@@ -27,8 +27,6 @@ class Game {
       this.orange6,
       this.orange7,
       this.orange8,
-    ];
-    this.activeCyanPieces = [
       this.cyan1,
       this.cyan2,
       this.cyan3,
@@ -38,8 +36,7 @@ class Game {
       this.cyan7,
       this.cyan8,
     ];
-    this.inactiveOrangePieces = [];
-    this.inactiveCyanPieces = [];
+    this.inactivePieces = [];
     this.board = [];
     this.numOfPieces = 8;
     this.activeCursor = this.orangeCursor;
@@ -76,9 +73,7 @@ class Game {
   drawBoard() {}
 
   drawPieces() {
-    this.activeOrangePieces
-      .concat(this.activeCyanPieces)
-      .forEach((piece) => piece.drawPiece());
+    this.activePieces.forEach((piece) => piece.drawPiece());
   }
 
   drawGrid() {

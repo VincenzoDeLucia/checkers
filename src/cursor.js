@@ -8,9 +8,6 @@ class Cursor {
   }
 
   moveRight() {
-    if (this.hasPiece && this.col > this.selectedPiece.col) {
-      //return
-    }
     if (this.col < 7) {
       this.col += 1;
     }
@@ -18,9 +15,6 @@ class Cursor {
   }
 
   moveLeft() {
-    if (this.hasPiece && this.col < this.selectedPiece.col) {
-      //return;
-    }
     if (this.col > 0) {
       this.col -= 1;
     }
@@ -28,9 +22,6 @@ class Cursor {
   }
 
   moveUp() {
-    if (this.hasPiece && this.row < this.selectedPiece.row) {
-      //return;
-    }
     if (this.row > 0) {
       this.row -= 1;
     }
@@ -38,9 +29,6 @@ class Cursor {
   }
 
   moveDown() {
-    if (this.hasPiece && this.row > this.selectedPiece.row) {
-      //return;
-    }
     if (this.row < 7) {
       this.row += 1;
     }
@@ -48,14 +36,12 @@ class Cursor {
   }
 
   cursorOnPieceCheck() {
-    return game.activeOrangePieces
-      .concat(game.activeCyanPieces)
-      .find(
-        (piece) =>
-          piece.color === this.color &&
-          piece.row === this.row &&
-          piece.col === this.col
-      );
+    return game.activePieces.find(
+      (piece) =>
+        piece.color === this.color &&
+        piece.row === this.row &&
+        piece.col === this.col
+    );
   }
 
   selectPiece() {
@@ -73,12 +59,39 @@ class Cursor {
   }
 
   moveSelectedPiece() {
+    let moveToMake = this.selectedPiece.possibleMoves.find((move) => {
+      return (
+        this.col === move.destination[0] && this.row === move.destination[1]
+      );
+    });
+    if (moveToMake.actionType === "eat") {
+      let enemy = this.selectedPiece.enemyNeighbours.find((enemyToEat) => {
+        return enemyToEat.relativePosition === moveToMake.relativePosition;
+      });
+      let target = game.activePieces.find((pieceToDisable) => {
+        return (
+          enemy.coordinates[0] === pieceToDisable.col &&
+          enemy.coordinates[1] === pieceToDisable.row
+        );
+      });
+      //console.log(game.activePieces.indexOf(target));
+      game.inactivePieces.push(target);
+      console.log(game.inactivePieces);
+      game.board[target.col][target.row].occupied = false;
+      game.activePieces.splice(game.activePieces.indexOf(target), 1);
+    }
+    if (moveToMake.actionType === "jump") {
+      //console.log("HELLO FRIEND!");
+      let target = this.selectedPiece.allyNeighbours.find((enemyToEat) => {
+        return enemyToEat.relativePosition === moveToMake.relativePosition;
+      });
+    }
     game.board[this.selectedPiece.col][this.selectedPiece.row].occupied = false;
     this.selectedPiece.col = this.col;
     this.selectedPiece.row = this.row;
     this.selectedPiece.selected = false;
     this.selectedPiece = null;
-    console.log(game.board);
+    //console.log(game.board);
   }
 
   moveIsLegal() {
@@ -92,7 +105,6 @@ class Cursor {
   }
 
   drawCursor() {
-    fill(this.color);
     image(cursor, this.col * SQUARE, this.row * SQUARE, SQUARE, SQUARE);
   }
 }

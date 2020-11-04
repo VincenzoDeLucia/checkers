@@ -8,6 +8,7 @@ class Piece {
     this.possibleMoves = [];
     this.selected = false;
     this.surroundings = this.getSurroundings();
+    this.opponent = this.getOpponent();
   }
 
   getSurroundings() {
@@ -141,7 +142,14 @@ class Piece {
         ].occupied;
       });
     console.log(this.enemyNeighbours);
-    console.log(this.possibleMoves);
+  }
+
+  getOpponent() {
+    if (this.color === "orange") {
+      this.opponent = "cyan";
+      return;
+    }
+    this.opponent = "orange";
   }
 
   drawPiece() {
@@ -159,7 +167,13 @@ class Piece {
     if (this.color === "orange") {
       game.board[this.col][this.row].occupied = true;
       game.board[this.col][this.row].occupiedBy = this;
-      image(dev, this.col * SQUARE, this.row * SQUARE, SQUARE, SQUARE);
+      image(
+        dev,
+        this.col * SQUARE + 15,
+        this.row * SQUARE + 15,
+        SQUARE - 30,
+        SQUARE - 30
+      );
       return;
     }
     game.board[this.col][this.row].occupied = true;
