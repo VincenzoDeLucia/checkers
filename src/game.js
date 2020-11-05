@@ -34,7 +34,7 @@ class Game {
     // this.cyan7,
     // this.cyan8,
     // ];
-    this.orangeCursor = new Cursor("orange", 0, 0);
+    this.orangeCursor = new Cursor("orange", 4, 4);
     this.cyanCursor = new Cursor("cyan", 7, 7);
     this.inactivePieces = [];
     this.board = [];
@@ -45,6 +45,7 @@ class Game {
     this.orangeScore = 0;
     this.cyanScore = 0;
     this.level = 1;
+    this.winner = "";
   }
 
   setup() {
@@ -76,22 +77,28 @@ class Game {
   }
 
   createTeams() {
-    for (let i = 1; i <= 7; i++) {
-      if (i % 2 !== 0) {
-        this.activeOrangePieces.push(new Piece("orange", i, 0));
-        this.activeOrangePieces.push(new Piece("orange", i, 2));
-        this.activeCyanPieces.push(new Piece("cyan", i, 6));
-      }
-    }
-    for (let k = 0; k <= 7; k++) {
-      if (k % 2 === 0) {
-        this.activeCyanPieces.push(new Piece("cyan", k, 5));
-        this.activeOrangePieces.push(new Piece("orange", k, 1));
-        this.activeCyanPieces.push(new Piece("cyan", k, 7));
-      }
-    }
+    // for (let i = 1; i <= 7; i++) {
+    // if (i % 2 !== 0) {
+    // // this.activeOrangePieces.push(new Piece("orange", i, 0));
+    // // this.activeOrangePieces.push(new Piece("orange", i, 2));
+    // // this.activeCyanPieces.push(new Piece("cyan", i, 6));
+    // }
+    // }
+    // for (let k = 0; k <= 7; k++) {
+    // if (k % 2 === 0) {
+    // // this.activeCyanPieces.push(new Piece("cyan", k, 5));
+    // // this.activeOrangePieces.push(new Piece("orange", k, 1));
+    // // this.activeCyanPieces.push(new Piece("cyan", k, 7));
+    // }
+    // }
+    this.activeOrangePieces.push(new Piece("orange", 4, 4));
+    this.activeCyanPieces.push(new Piece("cyan", 4, 5));
     this.activePieces = this.activeOrangePieces.concat(this.activeCyanPieces);
   }
+
+  // gameOver(){
+  //
+  // }
 
   drawPieces() {
     this.activePieces.forEach((piece) => piece.drawPiece());
@@ -116,6 +123,24 @@ class Game {
     this.drawGrid();
     this.drawCursors();
     this.drawPieces();
+  }
+
+  drawGameOver() {
+    if (this.winner === "orange") {
+      fill(255, 255, 255, 200);
+      rect(0, 240, 640, 160);
+      textSize(30);
+      textFont("Arial");
+      fill(0, 0, 0);
+      text("Once again, Developers save the day!", 50, 300);
+    } else if (this.winner === "cyan") {
+      fill(255, 255, 255, 200);
+      rect(0, 240, 640, 160);
+      textSize(30);
+      textFont("Arial");
+      fill(0, 0, 0);
+      text("The nefarious fruits have prevailed!", 50, 300);
+    }
   }
 }
 

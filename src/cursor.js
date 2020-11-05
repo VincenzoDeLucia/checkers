@@ -132,17 +132,13 @@ class Cursor {
       this.selectedPiece.color === "orange" &&
       game.activeCyanPieces.length === 0
     ) {
-      console.log("Once again, Developers save the day!");
-      noLoop();
+      game.winner = "orange";
     }
     if (
       this.selectedPiece.color === "cyan" &&
       game.activeOrangePieces.length === 0
     ) {
-      console.log(
-        "The nefarious fruits who disguise themselves as vegetables have prevailed!"
-      );
-      noLoop();
+      game.winner = "cyan";
     }
   }
 

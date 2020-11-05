@@ -24,6 +24,10 @@ function draw() {
   } else {
     game.drawGame();
   }
+  if (game.winner) {
+    game.drawGameOver();
+    noLoop();
+  }
 }
 
 function startGame() {
