@@ -1,4 +1,6 @@
 const game = new Game();
+const intro = new Intro();
+let level = "Intro";
 
 function preload() {
   console.log("PRELOAD");
@@ -10,15 +12,22 @@ function preload() {
 }
 
 function setup() {
-  //let startButton = createButton("Start the Battle!");
   let canvas = createCanvas(WIDTH, HEIGHT);
-  game.setUp();
-
-  //console.log(game.board);
+  intro.setup();
 }
 
 function draw() {
   clear();
   //background(terrain);
-  game.drawGame();
+  if (level === "Intro") {
+    intro.draw();
+  } else {
+    game.drawGame();
+  }
+}
+
+function startGame() {
+  level = "game";
+  startButton.hide();
+  game.setup();
 }

@@ -44,9 +44,10 @@ class Game {
     this.activePieces = [];
     this.orangeScore = 0;
     this.cyanScore = 0;
+    this.level = 1;
   }
 
-  setUp() {
+  setup() {
     let newRow = [];
     for (let i = 0; i < 8; i++) {
       for (let l = 0; l < 8; l++) {
@@ -92,8 +93,6 @@ class Game {
     this.activePieces = this.activeOrangePieces.concat(this.activeCyanPieces);
   }
 
-  modifyScores() {}
-
   drawPieces() {
     this.activePieces.forEach((piece) => piece.drawPiece());
   }
@@ -115,8 +114,8 @@ class Game {
 
   drawGame() {
     this.drawGrid();
-    this.drawPieces();
     this.drawCursors();
+    this.drawPieces();
   }
 }
 

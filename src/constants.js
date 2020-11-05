@@ -6,3 +6,5 @@ let dev;
 let cursor;
 let tom;
 let target;
+let startButton;
+let background;
