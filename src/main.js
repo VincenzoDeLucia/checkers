@@ -13,6 +13,7 @@ function preload() {
 
 function setup() {
   let canvas = createCanvas(WIDTH, HEIGHT);
+  canvas.position(0, 0, "static");
   intro.setup();
 }
 

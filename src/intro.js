@@ -3,7 +3,7 @@ class Intro {
 
   setup() {
     startButton = createButton("BATTLE");
-    startButton.position(430, 950);
+    startButton.position(430, 950, "static");
     startButton.addClass("start_button");
     startButton.mousePressed(startGame);
   }

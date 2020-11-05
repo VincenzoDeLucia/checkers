@@ -56,6 +56,11 @@ header {
   font-size: 50px;
 }
 
+#defaultCanvas0 {
+  margin-bottom: 50px;
+  border: 10px solid white;
+}
+
 .start_button {
   background-color: red;
   width: 400px;
@@ -63,9 +68,5 @@ header {
   color: white;
   border-radius: 15%;
   font-size: 30px;
-}
-
-#defaultCanvas0 {
   margin-bottom: 200px;
-  border: 10px solid white;
 }
