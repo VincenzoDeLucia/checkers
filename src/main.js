@@ -11,7 +11,7 @@ function preload() {
 
 function setup() {
   //let startButton = createButton("Start the Battle!");
-  let canvas = createCanvas(WIDTH, HEIGHT + 300);
+  let canvas = createCanvas(WIDTH, HEIGHT);
   game.setUp();
 
   //console.log(game.board);

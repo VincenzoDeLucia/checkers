@@ -5,6 +5,7 @@ class Cursor {
     this.color = color;
     this.hasPiece = false;
     this.selectedPiece = null;
+    this.score = document.querySelector(`#${color}_score > h2`);
   }
 
   moveRight() {
@@ -58,6 +59,10 @@ class Cursor {
     return;
   }
 
+  updateScore(value) {
+    this.score.innerText = value;
+  }
+
   moveSelectedPiece() {
     let moveToMake = this.selectedPiece.possibleMoves.find((move) => {
       return (
@@ -79,8 +84,9 @@ class Cursor {
       if (this.selectedPiece.color === "orange") {
         game.activeCyanPieces.splice(game.activeCyanPieces.indexOf(target), 1);
         game.orangeScore += 1;
+        this.updateScore(game.orangeScore);
         console.log(game.orangeScore);
-        console.log(game.activeCyanPieces);
+        //console.log(game.activeCyanPieces);
       }
       if (this.selectedPiece.color === "cyan") {
         game.activeOrangePieces.splice(
@@ -88,10 +94,11 @@ class Cursor {
           1
         );
         game.cyanScore += 1;
+        this.updateScore(game.cyanScore);
         console.log(game.cyanScore);
-        console.log(game.activeOrangePieces);
+        //console.log(game.activeOrangePieces);
       }
-      console.log(game.inactivePieces);
+      //console.log(game.inactivePieces);
       game.board[target.col][target.row].occupied = false;
       game.activePieces.splice(game.activePieces.indexOf(target), 1);
     }
@@ -126,6 +133,7 @@ class Cursor {
       game.activeCyanPieces.length === 0
     ) {
       console.log("Once again, Developers save the day!");
+      noLoop();
     }
     if (
       this.selectedPiece.color === "cyan" &&
@@ -134,6 +142,7 @@ class Cursor {
       console.log(
         "The nefarious fruits who disguise themselves as vegetables have prevailed!"
       );
+      noLoop();
     }
   }
 

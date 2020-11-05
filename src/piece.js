@@ -8,7 +8,7 @@ class Piece {
     this.possibleMoves = [];
     this.selected = false;
     this.surroundings = this.getSurroundings();
-    this.opponent = this.getOpponent();
+    //this.opponent = this.getOpponent();
   }
 
   getSurroundings() {
@@ -144,13 +144,13 @@ class Piece {
     //console.log(this.enemyNeighbours);
   }
 
-  getOpponent() {
-    if (this.color === "orange") {
-      this.opponent = "cyan";
-      return;
-    }
-    this.opponent = "orange";
-  }
+  //getOpponent() {
+  //  if (this.color === "orange") {
+  //    this.opponent = "cyan";
+  //    return;
+  //  }
+  //  this.opponent = "orange";
+  //}
 
   drawPiece() {
     if (this.selected) {
