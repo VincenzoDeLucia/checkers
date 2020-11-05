@@ -97,7 +97,7 @@ class Piece {
             return;
           }
           this.enemyNeighbours.push(adjacentSquare);
-          console.log("enemy detected");
+          //console.log("enemy detected");
           this.possibleMoves.push({
             actionType: "eat",
             relativePosition: adjacentSquare.relativePosition,
@@ -141,7 +141,7 @@ class Piece {
           possibleMove.destination[1]
         ].occupied;
       });
-    console.log(this.enemyNeighbours);
+    //console.log(this.enemyNeighbours);
   }
 
   getOpponent() {

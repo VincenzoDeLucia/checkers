@@ -75,18 +75,30 @@ class Cursor {
         );
       });
       //console.log(game.activePieces.indexOf(target));
-      console.log(game.activePieces.indexOf(target));
       game.inactivePieces.push(target);
+      if (this.selectedPiece.color === "orange") {
+        game.activeCyanPieces.splice(game.activeCyanPieces.indexOf(target), 1);
+        console.log("The devs have captured a tomato!");
+        console.log(game.activeCyanPieces);
+      }
+      if (this.selectedPiece.color === "cyan") {
+        game.activeOrangePieces.splice(
+          game.activeOrangePieces.indexOf(target),
+          1
+        );
+        console.log("The tomatoes have captured a dev!");
+        console.log(game.activeOrangePieces);
+      }
       console.log(game.inactivePieces);
       game.board[target.col][target.row].occupied = false;
       game.activePieces.splice(game.activePieces.indexOf(target), 1);
     }
-    if (moveToMake.actionType === "jump") {
-      //console.log("HELLO FRIEND!");
-      let target = this.selectedPiece.allyNeighbours.find((enemyToEat) => {
-        return enemyToEat.relativePosition === moveToMake.relativePosition;
-      });
-    }
+    // if (moveToMake.actionType === "jump") {
+    //console.log("HELLO FRIEND!");
+    // let target = this.selectedPiece.allyNeighbours.find((enemyToEat) => {
+    // return enemyToEat.relativePosition === moveToMake.relativePosition;
+    // });
+    // }
     game.board[this.selectedPiece.col][this.selectedPiece.row].occupied = false;
     this.selectedPiece.col = this.col;
     this.selectedPiece.row = this.row;
@@ -107,14 +119,20 @@ class Cursor {
   }
 
   winCheck() {
-    // let piecesLeft = game.activePieces.find(piece => {
-    // // return piece.color === this.selectedPiece.getOpponent();
-    // });
-    // // if (piecesLeft.length === 0 && this.selectedPiece === "orange") {
-    // console.log("The developers saved the day!");
-    // } else {
-    // // console.log("The nefarious tomatoes have prevailed!");
-    // }
+    if (
+      this.selectedPiece.color === "orange" &&
+      game.activeCyanPieces.length === 0
+    ) {
+      console.log("Once again, Developers save the day!");
+    }
+    if (
+      this.selectedPiece.color === "cyan" &&
+      game.activeOrangePieces.length === 0
+    ) {
+      console.log(
+        "The nefarious fruits who disguise themselves as vegetables have prevailed!"
+      );
+    }
   }
 
   drawCursor() {

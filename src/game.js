@@ -38,11 +38,12 @@ class Game {
     this.cyanCursor = new Cursor("cyan", 7, 7);
     this.inactivePieces = [];
     this.board = [];
-    this.numOfPieces = 8;
     this.activeCursor = this.orangeCursor;
     this.activeOrangePieces = [];
     this.activeCyanPieces = [];
     this.activePieces = [];
+    this.orangeScore = 0;
+    this.cyanScore = 0;
   }
 
   setUp() {
@@ -60,7 +61,9 @@ class Game {
       newRow = [];
     }
     this.createTeams();
-    console.log(this.activePieces);
+    this.activePieces.forEach((piece) => {
+      piece.vicinityCheck();
+    });
   }
 
   toggleCursor() {
