@@ -1,7 +1,7 @@
 class Game {
   constructor() {
-    this.orangeCursor = new Cursor("orange", 4, 4);
-    this.cyanCursor = new Cursor("cyan", 7, 7);
+    this.orangeCursor = new Cursor("orange", 3, 1);
+    this.cyanCursor = new Cursor("cyan", 4, 6);
     this.inactivePieces = [];
     this.board = [];
     this.activeCursor = this.orangeCursor;

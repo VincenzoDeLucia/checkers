@@ -53,7 +53,7 @@ header {
 
 #orange_score h2,
 #cyan_score h2 {
-  font-size: 100px;
+  font-size: 50px;
 }
 
 .start_button {
@@ -63,4 +63,9 @@ header {
   color: white;
   border-radius: 15%;
   font-size: 30px;
+}
+
+#defaultCanvas0 {
+  margin-bottom: 200px;
+  border: 10px solid white;
 }
