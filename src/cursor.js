@@ -78,7 +78,8 @@ class Cursor {
       game.inactivePieces.push(target);
       if (this.selectedPiece.color === "orange") {
         game.activeCyanPieces.splice(game.activeCyanPieces.indexOf(target), 1);
-        console.log("The devs have captured a tomato!");
+        game.orangeScore += 1;
+        console.log(game.orangeScore);
         console.log(game.activeCyanPieces);
       }
       if (this.selectedPiece.color === "cyan") {
@@ -86,7 +87,8 @@ class Cursor {
           game.activeOrangePieces.indexOf(target),
           1
         );
-        console.log("The tomatoes have captured a dev!");
+        game.cyanScore += 1;
+        console.log(game.cyanScore);
         console.log(game.activeOrangePieces);
       }
       console.log(game.inactivePieces);

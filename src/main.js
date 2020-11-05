@@ -10,8 +10,8 @@ function preload() {
 }
 
 function setup() {
-  let startButton = createButton("Start the Battle!");
-  let canvas = createCanvas(WIDTH, HEIGHT);
+  //let startButton = createButton("Start the Battle!");
+  let canvas = createCanvas(WIDTH, HEIGHT + 300);
   game.setUp();
 
   //console.log(game.board);
@@ -19,6 +19,6 @@ function setup() {
 
 function draw() {
   clear();
-  background(terrain);
+  //background(terrain);
   game.drawGame();
 }

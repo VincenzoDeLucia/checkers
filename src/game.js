@@ -92,6 +92,8 @@ class Game {
     this.activePieces = this.activeOrangePieces.concat(this.activeCyanPieces);
   }
 
+  modifyScores() {}
+
   drawPieces() {
     this.activePieces.forEach((piece) => piece.drawPiece());
   }
@@ -99,8 +101,8 @@ class Game {
   drawGrid() {
     for (var x = 0; x <= WIDTH; x += WIDTH / 8) {
       for (var y = 0; y <= HEIGHT; y += HEIGHT / 8) {
-        stroke(0);
-        strokeWeight(1);
+        stroke(255);
+        strokeWeight(4);
         line(x, 0, x, HEIGHT);
         line(0, y, HEIGHT, y);
       }
@@ -119,16 +121,16 @@ class Game {
 }
 
 function keyPressed() {
-  if (keyCode === 37) {
+  if (keyCode === 65) {
     game.activeCursor.moveLeft();
   }
-  if (keyCode === 38) {
+  if (keyCode === 87) {
     game.activeCursor.moveUp();
   }
-  if (keyCode === 39) {
+  if (keyCode === 68) {
     game.activeCursor.moveRight();
   }
-  if (keyCode === 40) {
+  if (keyCode === 83) {
     game.activeCursor.moveDown();
   }
   if (keyCode === 13) {

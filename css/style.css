@@ -24,10 +24,10 @@ header {
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+  padding: 20px 20px;
 }
 
 .label {
-  padding: 20px 20px;
   margin-top: 20px;
   background-color: olive;
   border: 2px solid white;
@@ -43,9 +43,15 @@ header {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
+  font-size: 30px;
 }
 
 .decoration {
   height: 100px;
+}
+
+#orange_score h2,
+#cyan_score h2 {
+  font-size: 100px;
 }
